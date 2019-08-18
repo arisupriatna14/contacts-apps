@@ -9,20 +9,8 @@
 import UIKit
 
 class ContactsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-
-    struct Contact {
-        var name: String
-        var surname: String
-        var phoneNumber: String
-        
-        var fullName: String {
-            return "\(name) \(surname)"
-        }
-    }
     
-    var allContacts: [Contact] = [
-        Contact(name: "Ari", surname: "Supriatna", phoneNumber: "+6285777282844")
-    ]
+    var allContacts: [Contact] = []
     
     //MARK: Global Variable
     var nameTextField: UITextField!
@@ -125,7 +113,9 @@ class ContactsViewController: UIViewController, UITableViewDelegate, UITableView
         let surname = self.surnameTextField.text!
         let phoneNumber = self.phoneNumberTextField.text!
         
-        self.allContacts.append(Contact(name: name, surname: surname, phoneNumber: phoneNumber))
+        let newContact = Contact(name: name, surname: surname, phoneNumber: phoneNumber)
+        
+        self.allContacts.append(newContact)
         self.tableView.reloadData()
     }
     
@@ -152,8 +142,7 @@ class ContactsViewController: UIViewController, UITableViewDelegate, UITableView
             let indexPath = sender as! IndexPath
             let tempContact = allContacts[indexPath.row]
             
-            profileVC.fullName = tempContact.fullName
-            profileVC.phoneNumber = tempContact.phoneNumber
+            profileVC.localContact = tempContact
         }
     }
     

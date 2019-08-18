@@ -13,13 +13,17 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var fullNameLabel: UILabel!
     @IBOutlet weak var phoneNumberLabel: UILabel!
     
-    var fullName: String!
-    var phoneNumber: String!
+    var localContact: Contact!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        fullNameLabel.text = fullName
-        phoneNumberLabel.text = phoneNumber
+        updateUI()
+    }
+    
+    //MARK: UpdateUI
+    func updateUI() {
+        fullNameLabel.text = localContact.fullName
+        phoneNumberLabel.text = localContact.phoneNumber
     }
 }
