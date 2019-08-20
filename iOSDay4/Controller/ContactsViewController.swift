@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ContactsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ContactsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, AddContactTableViewControllerDelegate {
     
     var allContacts: [Contact] = []
     
@@ -29,12 +29,13 @@ class ContactsViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! ContactTableViewCell
         
         let myContact = allContacts[indexPath.row]
-        
-        cell.textLabel?.text = myContact.fullName
-        cell.detailTextLabel?.text = myContact.phoneNumber
+
+        cell.setupCell(contact: myContact)
+//        cell.textLabel?.text = myContact.fullName
+//        cell.detailTextLabel?.text = myContact.phoneNumber
         
         return cell
     }
@@ -144,6 +145,19 @@ class ContactsViewController: UIViewController, UITableViewDelegate, UITableView
             
             profileVC.localContact = tempContact
         }
+        
+        if segue.identifier == "contactsToAddContactSeg" {
+            let addContactVC = segue.destination as! AddContactTableViewController
+            addContactVC.delegate = self
+        }
     }
+    
+    //MARK: AddContactTableViewControllerDelegate
+    func didCreateContact(contact: Contact) {
+        allContacts.append(contact)
+        tableView.reloadData()
+        print("New contact was created \(contact.fullName)!")
+    }
+    
     
 }
