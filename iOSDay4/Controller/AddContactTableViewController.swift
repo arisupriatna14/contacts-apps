@@ -25,6 +25,7 @@ class AddContactTableViewController: UITableViewController, UIImagePickerControl
     
     var delegate: AddContactTableViewControllerDelegate?
     var imagePicker = UIImagePickerController()
+    var avatarImage: UIImage?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,8 +33,7 @@ class AddContactTableViewController: UITableViewController, UIImagePickerControl
         imagePicker.delegate = self
     }
 
-    // MARK: - Table view data source
-
+    //MARK: - Table view data source
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }
@@ -43,7 +43,6 @@ class AddContactTableViewController: UITableViewController, UIImagePickerControl
     }
     
     //MARK: TabelViewDelegates
-    
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return ""
     }
@@ -56,7 +55,6 @@ class AddContactTableViewController: UITableViewController, UIImagePickerControl
     }
     
     //MARK: IBAction
-    
     @IBAction func cancelButtonPressed(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
@@ -65,7 +63,12 @@ class AddContactTableViewController: UITableViewController, UIImagePickerControl
         if nameTextField.text != "" && surnameTextField.text != "" && phoneNumberTextField.text != "" {
             createNewContact()
         } else {
-            print("Please input field name, surname, phoneNumber")
+            let alert = UIAlertController(title: "Warning", message: "Please input required field!", preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+            
+            alert.addAction(okAction)
+            
+            self.present(alert, animated: true, completion: nil)
         }
     }
     
@@ -103,14 +106,12 @@ class AddContactTableViewController: UITableViewController, UIImagePickerControl
             imagePicker.sourceType = .camera
             imagePicker.allowsEditing = false
             self.present(imagePicker, animated: true, completion: nil)
-            print("You have a camera, lets use it!")
         } else {
             let alert = UIAlertController(title: "Warning", message: "Camera not found", preferredStyle: .alert)
             let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
             
             alert.addAction(okAction)
             self.present(alert, animated: true, completion: nil)
-            print("You have no camera")
         }
     }
     
@@ -123,8 +124,9 @@ class AddContactTableViewController: UITableViewController, UIImagePickerControl
     //MARK: ImagePickerControllerDelegate
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let tempImage = info[.originalImage] {
+            avatarImage = tempImage as? UIImage
             avatarImageView.contentMode = .scaleAspectFit
-            avatarImageView.image = tempImage as? UIImage
+            avatarImageView.image = avatarImage
         }
         
         picker.dismiss(animated: true, completion: nil)
@@ -132,6 +134,10 @@ class AddContactTableViewController: UITableViewController, UIImagePickerControl
     
     func createNewContact() {
         let newContact = Contact(name: nameTextField.text!, surname: surnameTextField.text!, phoneNumber: phoneNumberTextField.text!)
+        
+        if avatarImage != nil {
+            newContact.avatar = avatarImage
+        }
         
         delegate!.didCreateContact(contact: newContact)
         self.dismiss(animated: true, completion: nil)

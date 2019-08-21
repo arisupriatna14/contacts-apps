@@ -10,7 +10,6 @@ import UIKit
 
 class ContactTableViewCell: UITableViewCell {
     
-    
     @IBOutlet weak var avatarImageView: UIImageView!
     @IBOutlet weak var fullNameLabel: UILabel!
     @IBOutlet weak var phoneNumberLabel: UILabel!
@@ -28,11 +27,9 @@ class ContactTableViewCell: UITableViewCell {
         fullNameLabel.text = contact.fullName
         phoneNumberLabel.text = contact.phoneNumber
         
-//        if avatarImageView != nil {
-//            avatarImageView.image = contact.avatar
-//        } else {
-//            avatarImageView.image = UIImage(named: "user")!
-//        }
+        if contact.avatar != nil {
+            avatarImageView.image = contact.avatar
+        }
     }
 
 }
