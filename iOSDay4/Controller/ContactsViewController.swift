@@ -30,12 +30,9 @@ class ContactsViewController: UIViewController, UITableViewDelegate, UITableView
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! ContactTableViewCell
-        
         let myContact = allContacts[indexPath.row]
 
         cell.setupCell(contact: myContact)
-//        cell.textLabel?.text = myContact.fullName
-//        cell.detailTextLabel?.text = myContact.phoneNumber
         
         return cell
     }
@@ -156,7 +153,6 @@ class ContactsViewController: UIViewController, UITableViewDelegate, UITableView
     func didCreateContact(contact: Contact) {
         allContacts.append(contact)
         tableView.reloadData()
-        print("New contact was created \(contact.fullName)!")
     }
     
     

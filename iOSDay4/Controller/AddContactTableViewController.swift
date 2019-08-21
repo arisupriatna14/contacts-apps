@@ -24,7 +24,6 @@ class AddContactTableViewController: UITableViewController, UIImagePickerControl
     @IBOutlet weak var addressTextView: UITextView!
     
     var delegate: AddContactTableViewControllerDelegate?
-    
     var imagePicker = UIImagePickerController()
     
     override func viewDidLoad() {
@@ -100,9 +99,19 @@ class AddContactTableViewController: UITableViewController, UIImagePickerControl
     
     //MARK: Helpers
     func showCamera() {
-        imagePicker.sourceType = .camera
-        imagePicker.allowsEditing = false
-        self.present(imagePicker, animated: true, completion: nil)
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+            imagePicker.sourceType = .camera
+            imagePicker.allowsEditing = false
+            self.present(imagePicker, animated: true, completion: nil)
+            print("You have a camera, lets use it!")
+        } else {
+            let alert = UIAlertController(title: "Warning", message: "Camera not found", preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+            
+            alert.addAction(okAction)
+            self.present(alert, animated: true, completion: nil)
+            print("You have no camera")
+        }
     }
     
     func showGallery() {
@@ -113,16 +122,16 @@ class AddContactTableViewController: UITableViewController, UIImagePickerControl
     
     //MARK: ImagePickerControllerDelegate
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        print("We got a picture")
+        if let tempImage = info[.originalImage] {
+            avatarImageView.contentMode = .scaleAspectFit
+            avatarImageView.image = tempImage as? UIImage
+        }
+        
+        picker.dismiss(animated: true, completion: nil)
     }
     
     func createNewContact() {
         let newContact = Contact(name: nameTextField.text!, surname: surnameTextField.text!, phoneNumber: phoneNumberTextField.text!)
-        
-        print("New Contact \(newContact)")
-        print(newContact.name)
-        print(newContact.surname)
-        print(newContact.fullName)
         
         delegate!.didCreateContact(contact: newContact)
         self.dismiss(animated: true, completion: nil)
