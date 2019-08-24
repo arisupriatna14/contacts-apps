@@ -26,9 +26,12 @@ class AddContactTableViewController: UITableViewController, UIImagePickerControl
     var delegate: AddContactTableViewControllerDelegate?
     var imagePicker = UIImagePickerController()
     var avatarImage: UIImage?
+    var datePicker = UIDatePicker()
+    var dateOfBirth: Date?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        createDatePicker()
         tableView.tableFooterView = UIView()
         imagePicker.delegate = self
     }
@@ -77,6 +80,11 @@ class AddContactTableViewController: UITableViewController, UIImagePickerControl
         showAlert()
     }
     
+    @objc func datePickerChangedValue() {
+        dateOfBirth = datePicker.date
+        dateOfBirthTextField.text = dateFormatter().string(from: datePicker.date)
+    }
+    
     //MARK: AlertController
     func showAlert() {
         let alert = UIAlertController(title: "Choose Avatar", message: nil, preferredStyle: .actionSheet)
@@ -121,6 +129,12 @@ class AddContactTableViewController: UITableViewController, UIImagePickerControl
         self.present(imagePicker, animated: true, completion: nil)
     }
     
+    func createDatePicker() {
+        datePicker.datePickerMode = .date
+        dateOfBirthTextField.inputView = datePicker
+        datePicker.addTarget(self, action: #selector(self.datePickerChangedValue), for: .valueChanged)
+    }
+    
     //MARK: ImagePickerControllerDelegate
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let tempImage = info[.originalImage] {
@@ -137,6 +151,14 @@ class AddContactTableViewController: UITableViewController, UIImagePickerControl
         
         if avatarImage != nil {
             newContact.avatar = avatarImage
+        }
+        
+        if addressTextView.text != nil {
+            newContact.address = addressTextView.text
+        }
+        
+        if dateOfBirth != nil {
+            newContact.dateOfBirth = dateOfBirth!
         }
         
         delegate!.didCreateContact(contact: newContact)

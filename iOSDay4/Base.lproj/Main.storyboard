@@ -323,7 +323,7 @@
             </objects>
             <point key="canvasLocation" x="1811.594202898551" y="-112.5"/>
         </scene>
-        <!--Profile View Controller-->
+        <!--Contacts Detail-->
         <scene sceneID="yXK-Q3-U2m">
             <objects>
                 <viewController id="99t-MG-rwZ" customClass="ProfileViewController" customModule="iOSDay4" customModuleProvider="target" sceneMemberID="viewController">
@@ -332,13 +332,32 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Full Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FgP-92-bfx">
-                                <rect key="frame" x="16" y="147" width="382" height="24"/>
+                                <rect key="frame" x="16" y="262" width="382" height="24"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Phone Number" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QJD-20-mJg">
-                                <rect key="frame" x="16" y="197" width="382" height="24"/>
+                                <rect key="frame" x="16" y="310" width="382" height="24"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user" translatesAutoresizingMaskIntoConstraints="NO" id="fVG-GY-3yv">
+                                <rect key="frame" x="20" y="104" width="374" height="128"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="128" id="JmO-gL-R8E"/>
+                                    <constraint firstAttribute="width" constant="374" id="a1X-bv-wHO"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Birthday" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3xv-ss-uaP">
+                                <rect key="frame" x="20" y="358" width="374" height="24"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Address" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FBp-Jo-Ps4">
+                                <rect key="frame" x="20" y="406" width="374" height="24"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -346,24 +365,36 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="Ba6-oC-7fR" firstAttribute="trailing" secondItem="QJD-20-mJg" secondAttribute="trailing" constant="16" id="1WG-rp-H7e"/>
-                            <constraint firstItem="QJD-20-mJg" firstAttribute="leading" secondItem="Ba6-oC-7fR" secondAttribute="leading" constant="16" id="7kY-Mt-BaA"/>
-                            <constraint firstItem="Ba6-oC-7fR" firstAttribute="trailing" secondItem="FgP-92-bfx" secondAttribute="trailing" constant="16" id="M5E-H9-uob"/>
-                            <constraint firstItem="FgP-92-bfx" firstAttribute="top" secondItem="Ba6-oC-7fR" secondAttribute="top" constant="59" id="bUj-NS-EvE"/>
-                            <constraint firstItem="FgP-92-bfx" firstAttribute="leading" secondItem="Ba6-oC-7fR" secondAttribute="leading" constant="16" id="hkg-Kv-xed"/>
-                            <constraint firstItem="QJD-20-mJg" firstAttribute="top" secondItem="FgP-92-bfx" secondAttribute="bottom" constant="26" id="s9l-ch-oqr"/>
+                            <constraint firstItem="FBp-Jo-Ps4" firstAttribute="top" secondItem="3xv-ss-uaP" secondAttribute="bottom" constant="24" id="6Ln-Jr-Nvl"/>
+                            <constraint firstItem="FgP-92-bfx" firstAttribute="top" secondItem="fVG-GY-3yv" secondAttribute="bottom" constant="30" id="7b9-SG-sXt"/>
+                            <constraint firstItem="3xv-ss-uaP" firstAttribute="leading" secondItem="Ba6-oC-7fR" secondAttribute="leading" constant="20" id="8Jc-o3-uVO"/>
+                            <constraint firstItem="QJD-20-mJg" firstAttribute="leading" secondItem="Ba6-oC-7fR" secondAttribute="leading" constant="16" id="9rZ-aF-iMx"/>
+                            <constraint firstItem="FBp-Jo-Ps4" firstAttribute="leading" secondItem="Ba6-oC-7fR" secondAttribute="leading" constant="20" id="DGe-lq-uqF"/>
+                            <constraint firstItem="Ba6-oC-7fR" firstAttribute="trailing" secondItem="FBp-Jo-Ps4" secondAttribute="trailing" constant="20" id="HP0-87-CZ6"/>
+                            <constraint firstItem="Ba6-oC-7fR" firstAttribute="trailing" secondItem="QJD-20-mJg" secondAttribute="trailing" constant="16" id="KKq-L2-K5R"/>
+                            <constraint firstItem="Ba6-oC-7fR" firstAttribute="trailing" secondItem="FgP-92-bfx" secondAttribute="trailing" constant="16" id="LZp-Tb-AdC"/>
+                            <constraint firstItem="FgP-92-bfx" firstAttribute="leading" secondItem="Ba6-oC-7fR" secondAttribute="leading" constant="16" id="Qwv-8c-5Ic"/>
+                            <constraint firstItem="fVG-GY-3yv" firstAttribute="top" secondItem="Ba6-oC-7fR" secondAttribute="top" constant="16" id="X02-KE-PBw"/>
+                            <constraint firstItem="Ba6-oC-7fR" firstAttribute="trailing" secondItem="3xv-ss-uaP" secondAttribute="trailing" constant="20" id="ZE7-wp-YPY"/>
+                            <constraint firstItem="fVG-GY-3yv" firstAttribute="leading" secondItem="Ba6-oC-7fR" secondAttribute="leading" constant="20" id="cNU-P4-9Ay"/>
+                            <constraint firstItem="3xv-ss-uaP" firstAttribute="top" secondItem="QJD-20-mJg" secondAttribute="bottom" constant="24" id="j9Y-Qh-XzB"/>
+                            <constraint firstItem="Ba6-oC-7fR" firstAttribute="trailing" secondItem="fVG-GY-3yv" secondAttribute="trailing" constant="20" id="osV-R0-Qc7"/>
+                            <constraint firstItem="QJD-20-mJg" firstAttribute="top" secondItem="FgP-92-bfx" secondAttribute="bottom" constant="24" id="tV1-Q5-ce2"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Ba6-oC-7fR"/>
                     </view>
-                    <navigationItem key="navigationItem" id="aLL-0w-vMf"/>
+                    <navigationItem key="navigationItem" title="Contacts Detail" id="aLL-0w-vMf"/>
                     <connections>
+                        <outlet property="addressLabel" destination="FBp-Jo-Ps4" id="QJX-e4-cF3"/>
+                        <outlet property="avatarImageView" destination="fVG-GY-3yv" id="XTP-fg-Xj1"/>
+                        <outlet property="dateOfBirth" destination="3xv-ss-uaP" id="O1U-Rr-MSQ"/>
                         <outlet property="fullNameLabel" destination="FgP-92-bfx" id="bbu-dw-Vgl"/>
                         <outlet property="phoneNumberLabel" destination="QJD-20-mJg" id="AVU-nq-ylL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OUR-QY-g3W" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1812" y="542"/>
+            <point key="canvasLocation" x="1811.594202898551" y="541.74107142857144"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="uCO-WZ-gTk">

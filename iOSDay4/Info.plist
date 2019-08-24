@@ -41,5 +41,9 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>NSCameraUsageDescription</key>
+	<string>We need to use the camera to set avatar images</string>
+	<key>NSAppleMusicUsageDescription</key>
+	<string>We need to use the library to set avatar images</string>
 </dict>
 </plist>

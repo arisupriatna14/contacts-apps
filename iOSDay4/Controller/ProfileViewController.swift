@@ -12,6 +12,9 @@ class ProfileViewController: UIViewController {
     
     @IBOutlet weak var fullNameLabel: UILabel!
     @IBOutlet weak var phoneNumberLabel: UILabel!
+    @IBOutlet weak var avatarImageView: UIImageView!
+    @IBOutlet weak var dateOfBirth: UILabel!
+    @IBOutlet weak var addressLabel: UILabel!
     
     var localContact: Contact!
     
@@ -23,7 +26,17 @@ class ProfileViewController: UIViewController {
     
     //MARK: UpdateUI
     func updateUI() {
+        self.title = localContact.name
         fullNameLabel.text = localContact.fullName
         phoneNumberLabel.text = localContact.phoneNumber
+        dateOfBirth.text = dateFormatter().string(from: localContact.dateOfBirth)
+        
+        if localContact.avatar != nil {
+            self.avatarImageView.image = localContact.avatar
+        }
+        
+        if localContact.address != nil {
+            self.addressLabel.text = localContact.address
+        }
     }
 }
